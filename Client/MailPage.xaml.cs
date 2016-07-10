@@ -27,6 +27,13 @@ namespace MidtermProject
 {
     public sealed partial class MailPage : Page
     {
-
+        //检查收到信息
+        async void check_mail() {
+            string data = localseetings.Values["user"].ToString();
+            HttpClient httpClient = new HttpClient();
+            
+            HttpResponseMessage response = await httpClient.PostAsync("http://sunzhongyang.com:7001/check", new StringContent(data));
+            string receive = await response.Content.ReadAsStringAsync();
+        }
     }
 }
